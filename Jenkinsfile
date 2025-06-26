@@ -53,8 +53,8 @@ pipeline {
         }
     }
 
-    triggers {
-        cron('30 5 * * 1') // Mondays at 05:30 for main
-        cron('0 14 * * *') // Every day at 14:00
-    }
+ triggers {
+     cron('30 5 * * 1\n0 14 * * *')
+ }
+
 }
