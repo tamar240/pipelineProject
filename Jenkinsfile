@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'verisoft-2'}
 
     parameters {
         string(name: 'REPO_URL', defaultValue: 'https://github.com/tamar240/pipelineProject', description: 'Repository URL')
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 echo 'Starting compilation stage'
                 timeout(time: 5, unit: 'MINUTES') {
-                    sh 'mvn compile'
+                    sh returnStatus:true,script:'mvn compile'
                 }
                 echo 'Compilation stage completed successfully'
             }
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 echo 'Starting test stage'
                 timeout(time: 5, unit: 'MINUTES') {
-                    sh 'mvn test'
+                    sh returnStatus:true,script:'mvn test'
                 }
                 echo 'Test stage completed successfully'
             }
